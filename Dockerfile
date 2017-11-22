@@ -12,6 +12,7 @@ RUN apk upgrade --update && \
     rm -rf /tmp/* /var/tmp/* /var/cache/apk/* && \
     printf '#!/bin/sh\nexec ./bin/kafka-manager -Dconfig.file=${KM_CONFIGFILE} "${KM_ARGS}" "${@}"\n' > /kafka-manager-${KM_VERSION}/km.sh && \
     chmod +x /kafka-manager-${KM_VERSION}/km.sh && \
+    chmod +x /kafka-manager-${KM_VERSION}/bin/kafka-manager && \
     addgroup -g ${KAFKA_MANAGER_GID} kafka-manager && \
     adduser -D -G kafka-manager -s /bin/bash -u ${KAFKA_MANAGER_UID} kafka-manager && \
     chown -R kafka-manager:kafka-manager /kafka-manager-${KM_VERSION}
